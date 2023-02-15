@@ -32,7 +32,12 @@ class CourseOfferingsService {
 
     // [].filter(c => c.courseId == courseId)
 
-    const offerings = await dbContext.CourseOfferings.find({ courseId })
+    const offerings = await dbContext.CourseOfferings
+    // PART 2
+    .find({ courseId })
+      // V include         v select
+      .populate('teacher', 'name picture')
+      .populate('course', 'name code')
     return offerings
 
   }

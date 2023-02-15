@@ -14,3 +14,21 @@ export const CourseOfferingSchema = new Schema({
 
 
 }, { timestamps: true, toJSON: { virtuals: true } })
+
+
+// PART 1
+CourseOfferingSchema.virtual('teacher', {
+  ref: 'Account',
+  justOne: true,
+  localField: 'teacherId',
+  foreignField: '_id'
+})
+
+CourseOfferingSchema.virtual('course', {
+  ref: 'Course',
+  justOne: true,
+  localField: 'courseId',
+  foreignField: '_id'
+})
+
+
